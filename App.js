@@ -1,47 +1,103 @@
+import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar'
-import { View } from 'react-native'
-import * as ImagePicker from 'expo-image-picker'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import ImageViewer from './components/ImageViewer'
-import Button from './components/Button'
-import styles from './styles/app'
-import { useState } from 'react'
+import Home from './components/Home'
+import NewHunt from './components/NewHunt'
+import ViewHunt from './components/ViewHunt'
+import Account from './components/Account'
+import { Button, Pressable, Text } from 'react-native'
 
-const placeholderImage = require('./assets/images/background-image.png')
+const Stack = createStackNavigator()
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name='Home'
+        component={Home}
+        options={({ navigation }) => ({
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate('NewHunt')}>
+              <Text style={{ color: 'white' }}>{'NewHunt >'}</Text>
+            </Pressable>
+          ),
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: '#25292e',
+          },
+        })}
+      />
+      <Stack.Screen
+        name='NewHunt'
+        component={NewHunt}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <Pressable onPress={() => navigation.goBack()}>
+              <Text style={{ color: 'white' }}>{'<'}</Text>
+            </Pressable>
+          ),
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate('ViewHunt')}>
+              <Text style={{ color: 'white' }}>{'ViewHunt >'}</Text>
+            </Pressable>
+          ),
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: '#25292e',
+          },
+        })}
+      />
+      <Stack.Screen
+        name='ViewHunt'
+        component={ViewHunt}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <Pressable onPress={() => navigation.goBack()}>
+              <Text style={{ color: 'white' }}>{'<'}</Text>
+            </Pressable>
+          ),
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate('Account')}>
+              <Text style={{ color: 'white' }}>{'Account >'}</Text>
+            </Pressable>
+          ),
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: '#25292e',
+          },
+        })}
+      />
+      <Stack.Screen
+        name='Account'
+        component={Account}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <Pressable onPress={() => navigation.goBack()}>
+              <Text style={{ color: 'white' }}>{'<'}</Text>
+            </Pressable>
+          ),
+          headerRight: () => (
+            <Pressable onPress={() => navigation.navigate('Home')}>
+              <Text style={{ color: 'white' }}>{'Home >'}</Text>
+            </Pressable>
+          ),
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: '#25292e',
+          },
+        })}
+      />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
-  const [selectedImage, setSelectedImage] = useState(null)
-
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-    })
-
-    if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri)
-    } else {
-      alert('You did not select an image')
-    }
-  }
-
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer
-          placeholderImageSource={placeholderImage}
-          selectedImage={selectedImage}
-        />
-      </View>
-      <View style={styles.footerContainer}>
-        <Button
-          theme='primary'
-          label='Choose a photo'
-          onPress={pickImageAsync}
-        />
-        <Button label='Use this photo' />
-      </View>
+    <NavigationContainer>
+      <MyStack />
       <StatusBar style='light' />
-    </View>
+    </NavigationContainer>
   )
 }
