@@ -15,13 +15,14 @@ import Home from './components/Home'
 import NewHunt from './components/NewHunt'
 import ViewHunt from './components/ViewHunt'
 import Account from './components/Account'
+// import Account from './components/AmplifyDemo'
 import HeaderLeft from './components/Header/HeaderLeft'
 import HeaderRight from './components/Header/HeaderRight'
 
 import { COLORS } from './constants'
 
-import awsExports from './src/aws-exports'
-Amplify.configure(awsExports)
+// import awsExports from './src/aws-exports'
+// Amplify.configure(awsExports)
 
 SplashScreen.preventAutoHideAsync()
 
