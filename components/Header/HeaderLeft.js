@@ -2,7 +2,7 @@ import { Text, Pressable } from 'react-native'
 
 import styles from '../../styles/app'
 
-export default function HeaderLeft(navigation) {
+const HeaderLeft = navigation => {
   const goBackIfPossible = navigation =>
     navigation.canGoBack() ? () => navigation.goBack() : null
 
@@ -15,3 +15,5 @@ export default function HeaderLeft(navigation) {
     </Pressable>
   )
 }
+
+export default HeaderLeft

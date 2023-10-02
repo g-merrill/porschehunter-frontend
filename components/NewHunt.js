@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 const placeholderImage = require('../assets/images/background-image.png')
 
-export default function NewHunt() {
+const NewHunt = () => {
   const [selectedImage, setSelectedImage] = useState(null)
 
   const pickImageAsync = async () => {
@@ -43,3 +43,5 @@ export default function NewHunt() {
     </SafeAreaView>
   )
 }
+
+export default NewHunt

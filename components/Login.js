@@ -2,10 +2,12 @@ import { View, Text, SafeAreaView } from 'react-native'
 
 import styles from '../styles/login'
 
-export default function Login() {
+const Login = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Login</Text>
     </SafeAreaView>
   )
 }
+
+export default Login

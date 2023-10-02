@@ -3,7 +3,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import styles from '../styles/button'
 
-export default function Button({ label, theme, onPress }) {
+const Button = ({ label, theme, onPress }) => {
   if (theme === 'primary') {
     return (
       <View
@@ -41,3 +41,5 @@ export default function Button({ label, theme, onPress }) {
     </View>
   )
 }
+
+export default Button
