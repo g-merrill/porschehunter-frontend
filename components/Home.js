@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, FlatList } from 'react-native'
+import { View, Text, SafeAreaView, FlatList, Pressable } from 'react-native'
 
 import styles from '../styles/home'
 import { useEffect, useState } from 'react'
@@ -10,8 +10,6 @@ const DATA = [
     selectedPhotos: [],
     totalPhotos: 5,
     location: 'San Francisco',
-    model: '911',
-    type: 'Carrera S',
   },
   {
     id: 2,
@@ -19,8 +17,6 @@ const DATA = [
     selectedPhotos: [],
     totalPhotos: 5,
     location: 'San Francisco',
-    model: '911',
-    type: 'Carrera S',
   },
   {
     id: 3,
@@ -28,8 +24,6 @@ const DATA = [
     selectedPhotos: [],
     totalPhotos: 5,
     location: 'San Francisco',
-    model: '911',
-    type: 'Carrera S',
   },
   {
     id: 4,
@@ -37,8 +31,6 @@ const DATA = [
     selectedPhotos: [],
     totalPhotos: 5,
     location: 'San Francisco',
-    model: '911',
-    type: 'Carrera S',
   },
   {
     id: 5,
@@ -46,20 +38,29 @@ const DATA = [
     selectedPhotos: [],
     totalPhotos: 5,
     location: 'San Francisco',
-    model: '911',
-    type: 'Carrera S',
   },
 ]
 
 const Home = ({ navigation, route }) => {
-  const { user } = route.params
-  const [activeUser, setActiveUser] = useState(user)
+  if (route.params) {
+    const { user } = route.params
+  }
+  // admin workaround for now
+  const [activeUser, setActiveUser] = useState({
+    email: 'gmerrill03@gmail.com',
+    username: 'g-merrill',
+  })
+  // const [activeUser, setActiveUser] = useState(user)
 
   useEffect(() => {
     if (!activeUser) {
       navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
     }
   }, [activeUser])
+
+  const handleNewHunt = () => {
+    navigation.navigate('NewHunt', { user: activeUser })
+  }
 
   const handleLogout = () => {
     setActiveUser(null)
@@ -71,6 +72,9 @@ const Home = ({ navigation, route }) => {
         <Text style={styles.homeTitle}>Porsche</Text>
         <Text style={styles.homeTitleTwo}>hunts</Text>
       </Text>
+      <Pressable style={styles.newHuntButton} onPress={handleNewHunt}>
+        <Text style={styles.newHuntButtonText}> + New Hunt</Text>
+      </Pressable>
       <View style={styles.huntListContainer}>
         <FlatList
           style={styles.huntList}

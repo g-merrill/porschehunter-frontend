@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-porschehunter-dev-11245-authRole",
+      "UnauthRoleArn": "arn:aws:iam::246222944879:role/amplify-porschehunter-dev-11245-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::246222944879:role/amplify-porschehunter-dev-11245-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-porschehunter-dev-11245-deployment",
+      "UnauthRoleName": "amplify-porschehunter-dev-11245-unauthRole",
+      "StackName": "amplify-porschehunter-dev-11245",
+      "StackId": "arn:aws:cloudformation:us-west-1:246222944879:stack/amplify-porschehunter-dev-11245/789ff230-60fb-11ee-98ca-06fea17e1071",
+      "AmplifyAppId": "d1r6cl4zo38zli"
+    },
+    "categories": {
+      "auth": {
+        "porschehunter8e5d3d6a": {}
+      }
+    }
+  }
+}

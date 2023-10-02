@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { COLORS, FONT } from '../constants'
+import { COLORS, FONT, SIZES } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,6 +26,26 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  newHuntButton: {
+    borderWidth: 1,
+    borderColor: COLORS.gold,
+    // width: 90,
+    height: 40,
+    marginVertical: 5,
+    paddingRight: 20,
+    paddingLeft: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.gold,
+  },
+  newHuntButtonText: {
+    color: COLORS.white,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    letterSpacing: 2,
+    fontSize: SIZES.medium,
   },
   huntListContainer: {
     width: '100%',
