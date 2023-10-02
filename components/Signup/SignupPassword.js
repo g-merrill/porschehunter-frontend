@@ -4,17 +4,21 @@ import styles from '../../styles/signup'
 import { useState } from 'react'
 import { COLORS } from '../../constants'
 
-const SignupPassword = ({ navigation }) => {
+const SignupPassword = ({ navigation, route }) => {
+  const { user } = route.params
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+
   const handleSubmit = () => {
     // check if valid password
     let passwordsMatch = true
     let passwordValid = true
     if (passwordsMatch && passwordValid) {
-      navigation.navigate('SignupUsername')
+      navigation.navigate('SignupUsername', { user: { ...user, password } })
     }
+    
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.passwordText}>Set a password for your account</Text>

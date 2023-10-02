@@ -10,7 +10,7 @@ const SignupEmail = ({ navigation }) => {
     // check if valid new email via backend
     let allClear = true
     if (email && allClear) {
-      navigation.navigate('SignupPassword')
+      navigation.navigate('SignupPassword', { user: { email }})
     }
   }
   return (

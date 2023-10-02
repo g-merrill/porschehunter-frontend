@@ -4,15 +4,22 @@ import styles from '../../styles/signup'
 import { useState } from 'react'
 import { COLORS } from '../../constants'
 
-const SignupUsername = ({ navigation }) => {
+const SignupUsername = ({ navigation, route }) => {
+  const { user: { email } } = route.params
   const [username, setUsername] = useState('')
+
   const handleSubmit = () => {
     // check if valid new username via backend
     let allClear = true
     if (!username || allClear) {
-      navigation.navigate('Home')
+      // post user to backend, then
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home', params: { user: { email, username } } }],
+      })
     }
   }
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.questionText}>
