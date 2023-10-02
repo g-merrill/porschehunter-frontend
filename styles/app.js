@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
+    backgroundColor: '#082131',
     alignItems: 'center',
   },
   headerButton: {
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 5,
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   headerText: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 })
 
 export default styles

@@ -27,7 +27,7 @@ const MyStack = () => {
       screenOptions={{
         headerTitle: '',
         headerStyle: {
-          backgroundColor: '#25292e',
+          backgroundColor: '#082131',
         },
         headerShadowVisible: false,
         headerMode: 'screen',

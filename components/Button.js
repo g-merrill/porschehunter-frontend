@@ -19,10 +19,10 @@ const Button = ({ label, theme, onPress }) => {
           <FontAwesome
             name='picture-o'
             size={18}
-            color='#25292e'
+            color='#082131'
             style={styles.buttonIcon}
           />
-          <Text style={[styles.buttonLabel, { color: '#25292e' }]}>
+          <Text style={[styles.buttonLabel, { color: '#082131' }]}>
             {label}
           </Text>
         </Pressable>

@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "porschehunter-frontend",
-    "slug": "porschehunter-frontend",
+    "name": "porsche-hunter-v-gm",
+    "slug": "porsche-hunter-v-gm",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/porsche-icon-1.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/porsche-logo-1-compressed.jpg",
+      "resizeMode": "cover",
+      "backgroundColor": "#082131"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#082131"
       }
     },
     "web": {
