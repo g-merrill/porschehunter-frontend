@@ -2,6 +2,7 @@ import { View, Pressable, Text } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 import styles from '../styles/button'
+import { COLORS } from '../constants'
 
 const Button = ({ label, theme, onPress }) => {
   if (theme === 'primary') {
@@ -19,10 +20,10 @@ const Button = ({ label, theme, onPress }) => {
           <FontAwesome
             name='picture-o'
             size={18}
-            color='#082131'
+            color={COLORS.primary}
             style={styles.buttonIcon}
           />
-          <Text style={[styles.buttonLabel, { color: '#082131' }]}>
+          <Text style={[styles.buttonLabel, { color: COLORS.primary }]}>
             {label}
           </Text>
         </Pressable>

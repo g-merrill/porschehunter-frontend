@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../constants'
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   buttonLabel: {
-    color: '#fff',
+    color: COLORS.white,
     fontSize: 16,
   },
 })

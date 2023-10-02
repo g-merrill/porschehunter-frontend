@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLORS } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     borderWidth: 0,
-    borderColor: 'white',
+    borderColor: COLORS.white,
     marginHorizontal: 5,
     paddingHorizontal: 30,
     paddingVertical: 5,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerText: {
-    color: 'white',
+    color: COLORS.white,
   },
 })
 
