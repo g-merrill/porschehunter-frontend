@@ -15,6 +15,12 @@ import Account from './components/Account'
 import HeaderLeft from './components/Header/HeaderLeft'
 import { COLORS } from './constants'
 
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import { useCallback } from 'react'
+
+SplashScreen.preventAutoHideAsync()
+
 const Stack = createStackNavigator()
 
 const MyStack = () => {
@@ -50,8 +56,23 @@ const MyStack = () => {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Lumanosimo: require('./assets/fonts/Lumanosimo-Regular.ttf'),
+    Skia: require('./assets/fonts/Skia-Regular.ttf'),
+  })
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded])
+
+  if (!fontsLoaded) {
+    return null
+  }
+
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={onLayoutRootView}>
       <MyStack />
       <StatusBar style='light' />
     </NavigationContainer>

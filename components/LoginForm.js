@@ -1,57 +1,49 @@
 import React, { useState } from 'react'
-import { Text, StyleSheet, View, TextInput } from 'react-native'
-import { COLORS } from '../constants'
+import { View, TextInput, Pressable, Text } from 'react-native'
 
-const LoginForm = () => {
-  const [text, setText] = useState('')
+import styles from '../styles/login'
+import { COLORS } from '../constants'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
+
+const LoginForm = ({ navigation }) => {
+  const [username, setUsername] = useState('')
   const [pw, setPw] = useState('')
+  const sendLoginRequest = () => {
+    console.log(`username: ${username}`)
+    console.log(`pw: ${pw}`)
+  }
   return (
-    <View style={styles.formContainer}>
-      <TextInput
-        placeholder='Email or username'
-        placeholderTextColor='red'
-        style={styles.formInput}
-        onChangeText={newText => setText(newText)}
-        defaultValue={text}
-      />
-      <TextInput
-        secureTextEntry={true}
-        placeholder='Password'
-        style={styles.formInput}
-        onChangeText={newPw => setPw(newPw)}
-        defaultValue={pw}
-      />
+    <View>
+      <View style={styles.formContainer}>
+        <TextInput
+          placeholder='Email or username'
+          placeholderTextColor={COLORS.dark}
+          style={styles.formInput}
+          onChangeText={newUsername => setUsername(newUsername)}
+          defaultValue={username}
+        />
+        <TextInput
+          secureTextEntry={true}
+          placeholder='Password'
+          placeholderTextColor={COLORS.dark}
+          style={styles.formInput}
+          onChangeText={newPw => setPw(newPw)}
+          defaultValue={pw}
+        />
+      </View>
+      <View style={styles.buttonsContainer}>
+        <Pressable style={styles.loginButton} onPress={sendLoginRequest}>
+          <Text style={styles.loginButtonText}>Log In</Text>
+        </Pressable>
+        <Pressable
+          style={styles.signupButton}
+          onPress={() => navigation.navigate('SignupEmail')}
+        >
+          <Text style={styles.signupButtonText}>Don't have an account? Sign up here!</Text>
+        </Pressable>
+      </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  formContainer: {
-    borderWidth: 1,
-    borderColor: COLORS.white,
-    alignItems: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-  },
-  formInput: {
-    marginVertical: 5,
-    width: 300,
-    height: 40,
-    paddingHorizontal: 10,
-    borderRadius: 50,
-    backgroundColor: '#DCDCDC',
-    color: 'red',
-  },
-  formText: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: COLORS.primary,
-    fontSize: 20,
-  },
-  text: {
-    color: COLORS.white,
-    fontSize: 20,
-  },
-})
 
 export default LoginForm

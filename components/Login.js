@@ -1,29 +1,19 @@
-import { View, Text, SafeAreaView, Image, Button } from 'react-native'
+import { View, Text, SafeAreaView, Image } from 'react-native'
 
 import styles from '../styles/login'
-import { useState } from 'react'
 import LoginForm from './LoginForm'
 
-const Login = ({ navigation }) => {
-  const [loginFormVisible, setLoginFormVisible] = useState(false)
+const imageSource = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash-compressed.jpg')
 
+const Login = (props) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Porsche Hunter</Text>
-      <View>
-        <Image />
-      </View>
-      <LoginForm />
-      <View>
-        <Button
-          title='Log in'
-          onPress={() => setLoginFormVisible(true)}
-        />
-        <Button
-          title='Sign Up'
-          onPress={() => navigation.navigate('SignupEmail')}
-        />
-      </View>
+      <Image resizeMode='cover' source={imageSource} style={styles.image} />
+      <Text style={styles.titleContainer}>
+        <Text style={styles.loginTitle}>Porsche</Text>
+        <Text style={styles.loginTitleTwo}>hunter</Text>
+      </Text>
+      <LoginForm {...props} />
     </SafeAreaView>
   )
 }

@@ -15,9 +15,9 @@ const COLORS = {
 }
 
 const FONT = {
-  // regular: 'DMRegular',
-  // medium: 'DMMedium',
-  // bold: 'DMBold',
+  lumanosimo: 'Lumanosimo',
+  skia: 'Skia',
+  // fancy: 'Apple Chancery Chancery',
 }
 
 const SIZES = {
