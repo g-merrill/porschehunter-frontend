@@ -48,8 +48,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginButton: {
-    borderWidth: 1,
-    borderColor: 'white',
     width: 250,
     height: 40,
     paddingHorizontal: 10,

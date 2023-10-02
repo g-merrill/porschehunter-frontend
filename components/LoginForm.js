@@ -9,6 +9,7 @@ const LoginForm = ({ navigation }) => {
   const [username, setUsername] = useState('')
   const [pw, setPw] = useState('')
   const sendLoginRequest = () => {
+    // send login request to backend
     console.log(`username: ${username}`)
     console.log(`pw: ${pw}`)
   }
