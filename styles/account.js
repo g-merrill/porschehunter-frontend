@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleContainer: {
     marginTop: 35,
@@ -25,19 +25,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subheader: {
-    color: COLORS.white,
-    fontSize: SIZES.medium,
+    color: COLORS.gold,
+    fontSize: SIZES.large,
   },
   contentText: {
     color: COLORS.white,
-    fontSize: SIZES.small,
+    fontSize: SIZES.medium,
+    marginVertical: 5,
   },
   usernameButton: {
     borderWidth: 1,
     borderColor: COLORS.tertiary,
     width: 160,
     height: 30,
-    marginVertical: 30,
+    marginTop: 10,
+    marginBottom: 30,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
@@ -74,7 +76,8 @@ const styles = StyleSheet.create({
     borderColor: COLORS.white,
     width: 160,
     height: 30,
-    marginVertical: 30,
+    marginTop: 10,
+    marginBottom: 30,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

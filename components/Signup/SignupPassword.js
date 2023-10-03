@@ -11,18 +11,22 @@ const SignupPassword = ({ navigation, route }) => {
 
   const handleSubmit = () => {
     // check if valid password
-    let passwordsMatch = true
-    let passwordValid = true
-    if (passwordsMatch && passwordValid) {
-      navigation.navigate('SignupUsername', { user: { ...user, password } })
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters long.')
+      return
     }
-    
+    if (password !== passwordConfirm) {
+      alert('Passwords do not match.')
+      return
+    }
+    navigation.navigate('SignupUsername', { user: { ...user, password } })
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.passwordText}>Set a password for your account</Text>
       <TextInput
+        secureTextEntry={true}
         placeholder='Password'
         placeholderTextColor={COLORS.white}
         style={styles.passwordInput}
@@ -30,10 +34,13 @@ const SignupPassword = ({ navigation, route }) => {
         defaultValue={password}
       />
       <TextInput
+        secureTextEntry={true}
         placeholder='Confirm Password'
         placeholderTextColor={COLORS.white}
         style={styles.passwordInput}
-        onChangeText={newPasswordConfirm => setPasswordConfirm(newPasswordConfirm)}
+        onChangeText={newPasswordConfirm =>
+          setPasswordConfirm(newPasswordConfirm)
+        }
         defaultValue={passwordConfirm}
       />
       <Pressable style={styles.continueButton} onPress={handleSubmit}>

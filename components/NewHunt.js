@@ -9,7 +9,7 @@ import styles from '../styles/newHunt'
 const placeholderImage = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash-compressed.jpg')
 
 const NewHunt = ({ navigation, route }) => {
-  const user = route.params ? route.params.user : null
+  const { user } = route.params
   const [selectedImage, setSelectedImage] = useState(null)
 
   const pickImageAsync = async () => {
@@ -30,7 +30,7 @@ const NewHunt = ({ navigation, route }) => {
     if (!selectedImage) {
       alert('You did not select an image')
     } else {
-      navigation.navigate('AddPhotoDetails', { uri: selectedImage })
+      navigation.navigate('AddPhotoDetails', { uri: selectedImage, user })
     }
   }
 

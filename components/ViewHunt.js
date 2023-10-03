@@ -13,13 +13,19 @@ const ViewHunt = ({ navigation, route }) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.titleContainer}>
         <Text style={styles.homeTitle}>Porsche</Text>
-        <Text style={styles.homeTitleTwo}>hunts</Text>
+        <Text style={styles.homeTitleTwo}>hunt</Text>
       </Text>
       <View style={styles.buttonsContainer}>
-        <Pressable style={styles.editHuntButton} onPress={() => {}}>
+        <Pressable
+          style={styles.editHuntButton}
+          onPress={() => alert('Clicked Edit Hunt')}
+        >
           <Text style={styles.editHuntButtonText}>Edit Hunt</Text>
         </Pressable>
-        <Pressable style={styles.deleteHuntButton} onPress={() => {}}>
+        <Pressable
+          style={styles.deleteHuntButton}
+          onPress={() => alert('Clicked Delete Hunt')}
+        >
           <Text style={styles.deleteHuntButtonText}>Delete Hunt</Text>
         </Pressable>
       </View>

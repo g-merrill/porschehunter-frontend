@@ -43,7 +43,7 @@ const DATA = [
 ]
 
 const Home = ({ navigation, route }) => {
-  const user = route.params ? route.params.user : null
+  const { user } = route.params
   const [activeUser, setActiveUser] = useState(user)
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Home = ({ navigation, route }) => {
   }, [activeUser])
 
   const handleNewHunt = () => {
-    navigation.navigate('NewHunt', { user: activeUser })
+    navigation.navigate('NewHunt', { user })
   }
 
   const handleLogout = () => {

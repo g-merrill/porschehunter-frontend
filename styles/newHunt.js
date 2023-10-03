@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   photoDeetsContainer: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: COLORS.primary,
-    alignItems: 'center',
+    // borderWidth: 3,
+    // borderColor: 'red',
   },
   photoDeetsImageContainer: {
     width: '100%',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingHorizontal: 10,
     borderRadius: 5,
-    color: COLORS.white,
+    color: COLORS.gold,
   },
   inputPressableEdit: {
     flex: 3 / 4,
