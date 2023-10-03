@@ -7,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useCallback } from 'react'
 import { Amplify } from 'aws-amplify'
 
+import { navigationRef } from './RootNavigation'
 import Login from './components/Login'
 import SignupEmail from './components/Signup/SignupEmail'
 import SignupPassword from './components/Signup/SignupPassword'
@@ -83,7 +84,7 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
+    <NavigationContainer onReady={onLayoutRootView} ref={navigationRef}>
       <MyStack />
       <StatusBar style='light' />
     </NavigationContainer>

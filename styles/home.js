@@ -47,27 +47,6 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     fontSize: SIZES.medium,
   },
-  huntListContainer: {
-    width: '100%',
-    paddingBottom: 100,
-    borderWidth: 3,
-    borderColor: COLORS.red,
-    flexGrow: 1,
-  },
-  huntList: {
-    flex: 1,
-    flexGrow: 1,
-    borderWidth: 3,
-    borderColor: COLORS.gold,
-  },
-  huntItem: {
-    flex: 1,
-    borderWidth: 3,
-    borderColor: COLORS.red,
-    marginVertical: 60,
-    color: COLORS.white,
-    textAlign: 'center',
-  },
   carouselContainer: {
     flex: 1,
     width: '100%',

@@ -1,7 +1,9 @@
-import React from 'react'
+import { useRef, useState } from 'react'
 import { Dimensions, View } from 'react-native'
+import { useRoute } from '@react-navigation/native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import CarouselCardItem from './CarouselCardItem'
+import CarouselHuntItem from './CarouselHuntItem'
 import data from '../../data'
 import styles from '../../styles/carousel'
 
@@ -9,17 +11,20 @@ export const SLIDER_WIDTH = Dimensions.get('window').width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 const CarouselCards = () => {
-  const [index, setIndex] = React.useState(0)
-  const isCarousel = React.useRef(null)
+  const [index, setIndex] = useState(0)
+  const isCarousel = useRef(null)
+  const route = useRoute()
+
+  const isHome = () => route.name === 'Home'
 
   return (
-    <View style={styles.carouselWrapper}>
+    <View style={isHome() ? styles.carouselWrapper : styles.carouselHuntWrapper}>
       <Carousel
         layout='tinder'
         layoutCardOffset={9}
         ref={isCarousel}
         data={data}
-        renderItem={CarouselCardItem}
+        renderItem={isHome() ? CarouselCardItem : CarouselHuntItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         inactiveSlideShift={0}

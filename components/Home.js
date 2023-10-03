@@ -44,11 +44,6 @@ const DATA = [
 
 const Home = ({ navigation, route }) => {
   const user = route.params ? route.params.user : null
-  // admin workaround for now
-  // const [activeUser, setActiveUser] = useState({
-  //   email: 'gmerrill03@gmail.com',
-  //   username: 'g-merrill',
-  // })
   const [activeUser, setActiveUser] = useState(user)
 
   useEffect(() => {
@@ -62,6 +57,7 @@ const Home = ({ navigation, route }) => {
   }
 
   const handleLogout = () => {
+    // TODO: logout via backend
     setActiveUser(null)
   }
 
@@ -77,19 +73,6 @@ const Home = ({ navigation, route }) => {
       <SafeAreaView style={styles.carouselContainer}>
         <CarouselCards />
       </SafeAreaView>
-      {/* <View style={styles.huntListContainer}>
-        <FlatList
-          style={styles.huntList}
-          data={DATA}
-          renderItem={({ item }) => (
-            // <Text style={styles.huntItem}>{item.title}</Text>
-            <SafeAreaView style={styles.carouselContainer}>
-              <CarouselCards />
-            </SafeAreaView>
-          )}
-          keyExtractor={item => item.id}
-        />
-      </View> */}
     </SafeAreaView>
   )
 }
