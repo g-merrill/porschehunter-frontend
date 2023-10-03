@@ -3,6 +3,7 @@ import { Dimensions, View } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import CarouselCardItem from './CarouselCardItem'
 import data from '../../data'
+import styles from '../../styles/carousel'
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
@@ -12,7 +13,7 @@ const CarouselCards = () => {
   const isCarousel = React.useRef(null)
 
   return (
-    <View>
+    <View style={styles.carouselWrapper}>
       <Carousel
         layout='tinder'
         layoutCardOffset={9}
@@ -22,7 +23,7 @@ const CarouselCards = () => {
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         inactiveSlideShift={0}
-        onSnapToItem={(index) => setIndex(index)}
+        onSnapToItem={index => setIndex(index)}
         useScrollView={true}
       />
       <Pagination
@@ -34,7 +35,7 @@ const CarouselCards = () => {
           height: 10,
           borderRadius: 5,
           marginHorizontal: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.92)',
+          backgroundColor: 'rgba(187, 157, 114, 0.92)',
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}

@@ -5,11 +5,19 @@ const SLIDER_WIDTH = Dimensions.get('window').width + 80
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
 const styles = StyleSheet.create({
+  carouselWrapper: {
+    marginTop: 20,
+  },
   container: {
-    backgroundColor: COLORS.white,
+    backgroundColor: '#082131',
+    // borderWidth: 3,
+    // borderColor: COLORS.red,
     borderRadius: 8,
     width: ITEM_WIDTH,
-    paddingBottom: 40,
+    marginTop: 10,
+    paddingTop: 0,
+    paddingBottom: 20,
+    // overflow: 'hidden',
     shadowColor: COLORS.white,
     shadowOffset: {
       width: 0,
@@ -21,21 +29,21 @@ const styles = StyleSheet.create({
   },
   image: {
     width: ITEM_WIDTH,
-    height: 300,
+    height: 250,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   header: {
-    color: '#222',
+    color: COLORS.white,
     fontSize: 28,
     fontWeight: 'bold',
-    paddingLeft: 20,
+    paddingHorizontal: 20,
     paddingTop: 20,
   },
   body: {
-    color: '#222',
+    color: COLORS.gold,
     fontSize: 18,
-    paddingLeft: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
   },
 })
 

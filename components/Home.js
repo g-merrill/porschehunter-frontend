@@ -74,7 +74,10 @@ const Home = ({ navigation, route }) => {
       <Pressable style={styles.newHuntButton} onPress={handleNewHunt}>
         <Text style={styles.newHuntButtonText}> + New Hunt</Text>
       </Pressable>
-      <View style={styles.huntListContainer}>
+      <SafeAreaView style={styles.carouselContainer}>
+        <CarouselCards />
+      </SafeAreaView>
+      {/* <View style={styles.huntListContainer}>
         <FlatList
           style={styles.huntList}
           data={DATA}
@@ -86,7 +89,7 @@ const Home = ({ navigation, route }) => {
           )}
           keyExtractor={item => item.id}
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   )
 }
