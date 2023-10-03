@@ -12,9 +12,11 @@ const HeaderRight = ({ navigation, route }) => {
   ]
   if (excludedRoutes.includes(route.name)) return null
 
+  const params = route.params
+
   return (
     <Pressable
-      onPress={() => navigation.navigate('Account')}
+      onPress={() => navigation.navigate('Account', params)}
       style={styles.headerButton}
     >
       <Text style={styles.headerText}>{'Account >'}</Text>

@@ -1,49 +1,54 @@
 import React, { useState } from 'react'
-import { View, TextInput, Pressable, Text } from 'react-native'
+import { View, TextInput, Pressable, Text, KeyboardAvoidingView } from 'react-native'
 
 import styles from '../styles/login'
 import { COLORS } from '../constants'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-const LoginForm = ({ navigation }) => {
-  const [username, setUsername] = useState('')
-  const [pw, setPw] = useState('')
-  const sendLoginRequest = () => {
+const LoginForm = ({ navigation, fetchUserLogin }) => {
+  const [loginString, setLoginString] = useState('')
+  const [password, setPassword] = useState('')
+  const sendLoginRequest = async () => {
+    // some cleaning up of frontend strings
     // send login request to backend
-    console.log(`username: ${username}`)
-    console.log(`pw: ${pw}`)
+    await fetchUserLogin(loginString, password)
+    console.log('successfully logged in!')
   }
+
   return (
-    <View>
-      <View style={styles.formContainer}>
-        <TextInput
-          placeholder='Email or username'
-          placeholderTextColor={COLORS.dark}
-          style={styles.formInput}
-          onChangeText={newUsername => setUsername(newUsername)}
-          defaultValue={username}
-        />
-        <TextInput
-          secureTextEntry={true}
-          placeholder='Password'
-          placeholderTextColor={COLORS.dark}
-          style={styles.formInput}
-          onChangeText={newPw => setPw(newPw)}
-          defaultValue={pw}
-        />
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View>
+          <View style={styles.formContainer}>
+            <TextInput
+              placeholder='Email or username'
+              placeholderTextColor={COLORS.dark}
+              style={styles.formInput}
+              onChangeText={newLoginString => setLoginString(newLoginString)}
+              defaultValue={loginString}
+            />
+            <TextInput
+              secureTextEntry={true}
+              placeholder='Password'
+              placeholderTextColor={COLORS.dark}
+              style={styles.formInput}
+              onChangeText={newPassword => setPassword(newPassword)}
+              defaultValue={password}
+            />
+          </View>
+          <View style={styles.buttonsContainer}>
+            <Pressable style={styles.loginButton} onPress={sendLoginRequest}>
+              <Text style={styles.loginButtonText}>Log In</Text>
+            </Pressable>
+            <Pressable
+              style={styles.signupButton}
+              onPress={() => navigation.navigate('SignupEmail')}
+            >
+              <Text style={styles.signupButtonText}>
+                Don't have an account? Sign up here!
+              </Text>
+            </Pressable>
+          </View>
       </View>
-      <View style={styles.buttonsContainer}>
-        <Pressable style={styles.loginButton} onPress={sendLoginRequest}>
-          <Text style={styles.loginButtonText}>Log In</Text>
-        </Pressable>
-        <Pressable
-          style={styles.signupButton}
-          onPress={() => navigation.navigate('SignupEmail')}
-        >
-          <Text style={styles.signupButtonText}>Don't have an account? Sign up here!</Text>
-        </Pressable>
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 

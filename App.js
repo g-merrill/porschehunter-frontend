@@ -31,21 +31,28 @@ const Stack = createStackNavigator()
 const MyStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={(props) => ({
+      screenOptions={props => ({
         headerTitle: '',
         headerStyle: {
           backgroundColor: COLORS.primary,
         },
-        headerRight: () => HeaderRight(props),
+        headerShadowVisible: false,
         headerMode: 'screen',
         initialRouteName: 'Login',
       })}
     >
       <Stack.Screen name='Login' component={Login} />
-      <Stack.Screen name='Home' component={Home} />
+      <Stack.Screen
+        name='Home'
+        component={Home}
+        options={props => ({
+          headerRight: () => HeaderRight(props),
+        })}
+      />
       <Stack.Group
-        screenOptions={({ navigation }) => ({
-          headerLeft: () => HeaderLeft(navigation),
+        screenOptions={({ navigation, route }) => ({
+          headerLeft: () => HeaderLeft({ navigation }),
+          headerRight: () => HeaderRight({ navigation, route }),
         })}
       >
         <Stack.Screen name='SignupEmail' component={SignupEmail} />

@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker'
 import ImageViewer from './ImageViewer'
 import Button from './Button'
 import styles from '../styles/newHunt'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const placeholderImage = require('../assets/images/background-image.png')
 
@@ -18,6 +18,7 @@ const NewHunt = () => {
     })
 
     if (!result.canceled) {
+      console.log(result.assets[0])
       setSelectedImage(result.assets[0].uri)
     } else {
       alert('You did not select an image')
