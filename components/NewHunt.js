@@ -19,7 +19,6 @@ const NewHunt = ({ navigation, route }) => {
     })
 
     if (!result.canceled) {
-      console.log(result.assets[0])
       setSelectedImage(result.assets[0].uri)
     } else {
       alert('You did not select an image')
@@ -28,7 +27,7 @@ const NewHunt = ({ navigation, route }) => {
 
   const handleSelectPhoto = () => {
     if (!selectedImage) {
-      alert('You did not select an image')
+      alert('Please select an image from your camera roll')
     } else {
       navigation.navigate('AddPhotoDetails', { uri: selectedImage, user })
     }

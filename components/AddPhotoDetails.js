@@ -14,7 +14,6 @@ const placeholderImage = require('../assets/images/josh-berquist-PljkQ_KSbMc-uns
 
 const AddPhotoDetails = ({ navigation, route }) => {
   const { user, uri, hunt } = route.params
-  const [selectedImage, setSelectedImage] = useState(null)
   const [huntTitle, setHuntTitle] = useState('')
   const [huntTitleBtnText, setHuntTitleBtnText] = useState('Done')
   const [huntLoc, setHuntLoc] = useState('')
@@ -30,42 +29,12 @@ const AddPhotoDetails = ({ navigation, route }) => {
     }
   }, [])
 
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-    })
-
-    if (!result.canceled) {
-      console.log(result.assets[0])
-      setSelectedImage(result.assets[0].uri)
-    } else {
-      alert('You did not select an image')
-    }
-  }
-
   const toggleHuntTitleBtn = () => {
     setHuntTitleBtnText(huntTitleBtnText === 'Done' ? 'Edit' : 'Done')
   }
 
   const toggleHuntLocBtn = () => {
     setHuntLocBtnText(huntLocBtnText === 'Done' ? 'Edit' : 'Done')
-  }
-
-  const toggleCarModelBtn = () => {
-    setCarModelBtnText(carModelBtnText === 'Done' ? 'Edit' : 'Done')
-  }
-
-  const toggleCarTypeBtn = () => {
-    setCarTypeBtnText(carTypeBtnText === 'Done' ? 'Edit' : 'Done')
-  }
-
-  const handleSelectPhoto = () => {
-    if (!selectedImage) {
-      alert('You did not select an image')
-    } else {
-      navigation.navigate('AddPhotoDetails', { uri: selectedImage })
-    }
   }
 
   const handleAddMorePhotos = () => {
@@ -83,31 +52,34 @@ const AddPhotoDetails = ({ navigation, route }) => {
       return
     }
     // save new hunt or patch existing hunt
+    let huntFetch
     if (hunt) {
       const body = { title: huntTitle, location: huntLoc }
-      const patchHuntFetch = await fetchApi(`/hunts/${hunt.id}?user_id=${user.id}`, 'POST', {
-        body,
-      })
-      console.log(patchHuntFetch)
+      huntFetch = await fetchApi(
+        `/hunts/${hunt.id}?user_id=${user.id}`,
+        'POST',
+        {
+          body,
+        },
+      )
     } else {
       const body = { title: huntTitle, location: huntLoc }
-      const createHuntFetch = await fetchApi(`/hunts?user_id=${user.id}`, 'POST', { body })
-      console.log(createHuntFetch)
+      huntFetch = await fetchApi(`/hunts?user_id=${user.id}`, 'POST', { body })
     }
-    alert('clicked SaveHunt')
     // then save photo with hunt data
-    // then navigate to ViewHunt with hunt in route params
+    const photoBody =
+      carModel === 'Unknown' ? { uri } : { uri, carModel, carType }
 
-  }
-
-  const generateCarTypeItems = () => {
-    return (
-      <>
-        {carTypes[carModel].sort().map((carType) => (
-          <Picker.Item label={carType} value={carType} key={carType} />
-        ))}
-      </>
+    const postPhotoFetch = await fetchApi(
+      `/hunts/${huntFetch.id}/photos?user_id=${user.id}`,
+      'POST',
+      {
+        body: photoBody,
+      },
     )
+    alert('clicked SaveHunt')
+    // TODO: then navigate to ViewHunt with hunt in route params
+
   }
 
   return (
@@ -180,6 +152,7 @@ const AddPhotoDetails = ({ navigation, route }) => {
                 fontSize: 16,
               }}
             >
+              <Picker.Item label='Unknown' value='Unknown' />
               <Picker.Item label='718' value='718' />
               <Picker.Item label='911' value='911' />
               <Picker.Item label='Taycan' value='Taycan' />

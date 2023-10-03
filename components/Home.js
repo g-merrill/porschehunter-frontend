@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, FlatList, Pressable } from 'react-native'
 import styles from '../styles/home'
 import { useEffect, useState } from 'react'
 import CarouselCards from './Carousel/CarouselCards'
+import fetchApi from '../services/fetchApi'
 
 const DATA = [
   {
@@ -45,10 +46,17 @@ const DATA = [
 const Home = ({ navigation, route }) => {
   const { user } = route.params
   const [activeUser, setActiveUser] = useState(user)
+  const [data, setData] = useState([])
 
   useEffect(() => {
     if (!activeUser) {
       navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
+    } else {
+      const getHuntsFetch = async () => {
+        const huntsData = (await fetchApi(`/hunts?user_id=${user.id}`, 'GET')).data
+        setData(huntsData)
+      }
+      getHuntsFetch()
     }
   }, [activeUser])
 
@@ -71,6 +79,7 @@ const Home = ({ navigation, route }) => {
         <Text style={styles.newHuntButtonText}> + New Hunt</Text>
       </Pressable>
       <SafeAreaView style={styles.carouselContainer}>
+        {/* <CarouselCards data={data} /> */}
         <CarouselCards />
       </SafeAreaView>
     </SafeAreaView>

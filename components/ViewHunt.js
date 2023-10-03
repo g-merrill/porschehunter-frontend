@@ -3,11 +3,23 @@ import { useEffect, useState } from 'react'
 import CarouselCards from './Carousel/CarouselCards'
 
 import styles from '../styles/viewHunt'
+import fetchApi from '../services/fetchApi'
 
 const ViewHunt = ({ navigation, route }) => {
-  const user = route.params ? route.params.user : null
+  const { user, hunt_id } = route.params
   const [huntTitle, setHuntTitle] = useState('Test Hunt Title')
   const [huntLocation, setHuntLocation] = useState('Test Hunt Location')
+  const [photoData, setPhotoData] = useState([])
+
+  useEffect(() => {
+    const getHuntData = async hunt_id => {
+      const getHuntFetch = await fetchApi(`/hunts/${hunt_id}`, 'GET')
+      const getPhotoFetch = await fetchApi(`/hunts/${hunt_id}/photos`, 'GET')
+      const data = getPhotoFetch.data
+      setPhotoData(data)
+    }
+    getHuntData()
+  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,6 +46,7 @@ const ViewHunt = ({ navigation, route }) => {
         <Text style={styles.huntLocation}>{huntLocation}</Text>
       </View>
       <SafeAreaView style={styles.carouselContainer}>
+        {/* <CarouselCards data={photoData} /> */}
         <CarouselCards />
       </SafeAreaView>
     </SafeAreaView>

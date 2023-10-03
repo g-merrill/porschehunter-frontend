@@ -4,18 +4,21 @@ import { useRoute } from '@react-navigation/native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import CarouselCardItem from './CarouselCardItem'
 import CarouselHuntItem from './CarouselHuntItem'
-import data from '../../data'
+import importedData from '../../data'
 import styles from '../../styles/carousel'
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
+// const CarouselCards = ({ data = [] }) => {
 const CarouselCards = () => {
   const [index, setIndex] = useState(0)
   const isCarousel = useRef(null)
   const route = useRoute()
 
   const isHome = () => route.name === 'Home'
+
+  const data = isHome() ? importedData.slice(0, 3) : importedData.slice(-9)
 
   return (
     <View style={isHome() ? styles.carouselWrapper : styles.carouselHuntWrapper}>

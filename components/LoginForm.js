@@ -8,10 +8,9 @@ const LoginForm = ({ navigation, fetchUserLogin }) => {
   const [loginString, setLoginString] = useState('')
   const [password, setPassword] = useState('')
   const sendLoginRequest = async () => {
-    // some cleaning up of frontend strings
+    // TODO: some cleaning up of login strings
     // send login request to backend
     await fetchUserLogin(loginString, password)
-    console.log('successfully logged in!')
   }
 
   return (

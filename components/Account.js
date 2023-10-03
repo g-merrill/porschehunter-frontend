@@ -21,7 +21,6 @@ const Account = ({ navigation, route }) => {
     const fetchAccount = async () => {
       // fetch user data when page loads
       const userData = await fetchApi(`/users/${id}?user_id=${id}`, 'GET')
-      console.log(userData)
       setEmail(userData.email)
       setUsername(userData.username)
     }

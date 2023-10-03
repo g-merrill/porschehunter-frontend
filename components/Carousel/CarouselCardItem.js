@@ -6,7 +6,7 @@ import styles from '../../styles/carousel'
 const CarouselCardItem = ({ item, index }) => {
   const handleHuntPress = () => {
     // TODO: get and pass hunt data somehow here
-    RootNavigation.navigate('ViewHunt')
+    RootNavigation.navigate('ViewHunt', { hunt: item })
   }
   return (
     <View style={styles.container} key={index}>

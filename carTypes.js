@@ -1,4 +1,5 @@
 const carTypes = {
+  'Unknown': [],
   '718': ['Cayman', 'Boxster', 'Cayman Style Edition', 'Boxster Style Edition', 'Cayman', 'S', 'Boxster S', 'Cayman GTS 4.0', 'Boxster GTS 4.0', 'Cayman GT4 RS', 'Spyder RS'],
   '911': ['Carrera', 'Carrera T', 'Carrera Cabriolet', 'Carrera 4', 'Carrera 4 Cabriolet', 'Carrera S', 'Carrera S Cabriolet', 'Carrera 4S', 'Carrera 4S Cabriolet', 'Targa 4', 'Targa 4S', 'Carrera GTS', 'Carrera GTS Cabriolet', 'Carrera 4 GTS', 'Carrera 4 GTS Cabriolet', 'Targa 4 GTS', 'Edition 50 Years Porsche Design', 'Turbo', 'Turbo Cabriolet', 'Turbo S', 'Turbo S Cabriolet', 'GT3', 'GT3 with Touring Package', 'GT3 RS', 'Dakar', 'S/T'],
   'Taycan': ['Factory', '4 Cross Turismo', '4S', '4S Cross Turismo', 'GTS', 'GTS Sport Turismo', 'Turbo', 'Turbo Cross Turismo', 'Turbo S', 'Turbo S Cross Turismo'],

@@ -9,10 +9,8 @@ const fetchApi = async (
   } = {},
 ) => {
   const url = `${api}/api${route}`
-  console.log(url)
   try {
     const config = configureRequest(verb, body)
-    console.log(config)
     const response = await fetch(url, config)
     const processed = await response.json()
     return processed
