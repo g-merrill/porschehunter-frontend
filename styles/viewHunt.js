@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginTop: 15,
+    alignItems: 'center'
   },
   huntTitle: {
     color: COLORS.white,
