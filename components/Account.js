@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Pressable, TextInput } from 'react-native'
+import { View, Text, SafeAreaView, Pressable, TextInput, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 
 import styles from '../styles/account'
 import { useEffect, useState } from 'react'
@@ -50,50 +50,68 @@ const Account = ({ navigation, route }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Account</Text>
-      <Text style={styles.subheader}>Username</Text>
-      <Text style={styles.contentText}>{username}</Text>
-      {editingUsername && (
-        <TextInput
-          style={styles.usernameInput}
-          placeholder='New username'
-          placeholderTextColor={COLORS.gold}
-          onChangeText={newUsername => setUsername(newUsername)}
-          defaultValue={username}
-        />
-      )}
-      <Pressable style={styles.usernameButton} onPress={handleChangeUsername}>
-        <Text style={styles.usernameButtonText}>{usernameBtnText}</Text>
-      </Pressable>
-      <Text style={styles.subheader}>Email</Text>
-      <Text style={styles.contentText}>{email}</Text>
-      {editingPassword && (
-        <>
-          <TextInput
-            style={styles.passwordInput}
-            placeholder='New password'
-            placeholderTextColor={COLORS.white}
-            onChangeText={newPassword => setPassword(newPassword)}
-            defaultValue={password}
-          />
-          <TextInput
-            style={styles.passwordInput}
-            placeholder='Confirm password'
-            placeholderTextColor={COLORS.white}
-            onChangeText={newPasswordConfirm =>
-              setPasswordConfirm(newPasswordConfirm)
-            }
-            defaultValue={passwordConfirm}
-          />
-        </>
-      )}
-      <Pressable style={styles.passwordButton} onPress={handleChangePassword}>
-        <Text style={styles.passwordButtonText}>{passwordBtnText}</Text>
-      </Pressable>
-      <Pressable style={styles.logoutButton} onPress={handleLogout}>
-        <Text style={styles.logoutButtonText}>Log Out</Text>
-      </Pressable>
+    <SafeAreaView style={styles.wrapper}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={{ alignItems: 'center' }}
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Account</Text>
+          </View>
+          <Text style={styles.subheader}>Username</Text>
+          <Text style={styles.contentText}>{username}</Text>
+            {editingUsername && (
+              <TextInput
+                style={styles.usernameInput}
+                placeholder='New username'
+                placeholderTextColor={COLORS.gold}
+                onChangeText={newUsername => setUsername(newUsername)}
+                defaultValue={username}
+              />
+            )}
+            <Pressable
+              style={styles.usernameButton}
+              onPress={handleChangeUsername}
+            >
+              <Text style={styles.usernameButtonText}>{usernameBtnText}</Text>
+            </Pressable>
+            <Text style={styles.subheader}>Email</Text>
+            <Text style={styles.contentText}>{email}</Text>
+            {editingPassword && (
+              <>
+                <TextInput
+                  style={styles.passwordInput}
+                  placeholder='New password'
+                  placeholderTextColor={COLORS.white}
+                  onChangeText={newPassword => setPassword(newPassword)}
+                  defaultValue={password}
+                />
+                <TextInput
+                  style={styles.passwordInput}
+                  placeholder='Confirm password'
+                  placeholderTextColor={COLORS.white}
+                  onChangeText={newPasswordConfirm =>
+                    setPasswordConfirm(newPasswordConfirm)
+                  }
+                  defaultValue={passwordConfirm}
+                />
+              </>
+            )}
+            <Pressable
+              style={styles.passwordButton}
+              onPress={handleChangePassword}
+            >
+              <Text style={styles.passwordButtonText}>{passwordBtnText}</Text>
+            </Pressable>
+          <Pressable style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutButtonText}>Log Out</Text>
+          </Pressable>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </SafeAreaView>
   )
 }

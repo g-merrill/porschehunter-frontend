@@ -2,10 +2,20 @@ import { StyleSheet } from 'react-native'
 import { COLORS, SIZES, FONT } from '../constants'
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     backgroundColor: COLORS.primary,
-    alignItems: 'center',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  titleContainer: {
+    marginTop: 35,
+    marginBottom: 15,
   },
   title: {
     color: COLORS.white,
