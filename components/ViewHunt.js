@@ -12,13 +12,15 @@ const ViewHunt = ({ navigation, route }) => {
   const [photoData, setPhotoData] = useState([])
 
   useEffect(() => {
-    const getHuntData = async hunt_id => {
-      const getHuntFetch = await fetchApi(`/hunts/${hunt_id}`, 'GET')
-      const getPhotoFetch = await fetchApi(`/hunts/${hunt_id}/photos`, 'GET')
-      const data = getPhotoFetch.data
-      setPhotoData(data)
+    if (hunt_id) {
+      const getHuntData = async hunt_id => {
+        const getHuntFetch = await fetchApi(`/hunts/${hunt_id}`, 'GET')
+        const getPhotoFetch = await fetchApi(`/hunts/${hunt_id}/photos`, 'GET')
+        const data = getPhotoFetch.data
+        setPhotoData(data)
+      }
+      getHuntData()
     }
-    getHuntData()
   }, [])
 
   return (
@@ -36,7 +38,10 @@ const ViewHunt = ({ navigation, route }) => {
         </Pressable>
         <Pressable
           style={styles.deleteHuntButton}
-          onPress={() => alert('Clicked Delete Hunt')}
+          onPress={() => {
+            // alert('Clicked Delete Hunt')
+            navigation.navigate('Home', { user })
+          }}
         >
           <Text style={styles.deleteHuntButtonText}>Delete Hunt</Text>
         </Pressable>

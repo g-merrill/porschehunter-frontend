@@ -15,10 +15,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   photoDeetsContainer: {
-    // flex: 1,
     backgroundColor: COLORS.primary,
-    // borderWidth: 3,
-    // borderColor: 'red',
   },
   photoDeetsImageContainer: {
     width: '100%',
@@ -30,13 +27,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingTop: 10,
-    // borderWidth: 3,
-    // borderColor: 'red',
   },
   inputRow: {
-    // flex: 1,
-    // borderWidth: 3,
-    // borderColor: 'red',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
@@ -84,7 +76,6 @@ const styles = StyleSheet.create({
   },
   addMoreText: {
     color: COLORS.dark,
-    // textDecorationLine: 'underline'
     fontWeight: 'bold',
   },
   saveHuntButton: {

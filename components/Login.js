@@ -11,13 +11,19 @@ const imageSource = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash
 
 const Login = ({ navigation }) => {
   const fetchUserLogin = async (loginString, password) => {
+    // TODO: get email from backend if user passes in the username
     const body = { email: loginString, password: password }
-    const userData = await fetchApi('/auth/login', 'POST', { body })
-    if (userData.user) {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Home', params: { user: { id: userData.user.id } } }],
-      })
+    try {
+      const userData = await fetchApi('/auth/login', 'POST', { body })
+      if (userData.user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home', params: { user: { id: userData.user.id } } }],
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      alert('Login failed, please try again.')
     }
   }
 

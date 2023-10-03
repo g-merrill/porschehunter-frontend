@@ -13,14 +13,11 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#082131',
-    // borderWidth: 3,
-    // borderColor: COLORS.red,
     borderRadius: 8,
     width: ITEM_WIDTH,
     marginTop: 10,
     paddingTop: 0,
     paddingBottom: 20,
-    // overflow: 'hidden',
     shadowColor: COLORS.white,
     shadowOffset: {
       width: 0,
@@ -32,14 +29,11 @@ const styles = StyleSheet.create({
   },
   huntContainer: {
     backgroundColor: '#082131',
-    // borderWidth: 3,
-    // borderColor: COLORS.red,
     borderRadius: 8,
     width: ITEM_WIDTH,
     marginTop: 10,
     paddingTop: 0,
     paddingBottom: 12,
-    // overflow: 'hidden',
     shadowColor: COLORS.white,
     shadowOffset: {
       width: 0,

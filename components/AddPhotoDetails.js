@@ -79,7 +79,7 @@ const AddPhotoDetails = ({ navigation, route }) => {
     )
     alert('clicked SaveHunt')
     // TODO: then navigate to ViewHunt with hunt in route params
-
+    navigation.navigate('ViewHunt', { hunt_id: huntFetch.id })
   }
 
   return (

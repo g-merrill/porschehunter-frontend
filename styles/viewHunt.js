@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonsContainer: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',

@@ -17,7 +17,6 @@ const COLORS = {
 const FONT = {
   lumanosimo: 'Lumanosimo',
   skia: 'Skia',
-  // fancy: 'Apple Chancery Chancery',
 }
 
 const SIZES = {

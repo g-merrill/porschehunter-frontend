@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   newHuntButton: {
     borderWidth: 1,
     borderColor: COLORS.gold,
-    // width: 90,
     height: 40,
     marginVertical: 5,
     paddingRight: 20,
