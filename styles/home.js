@@ -63,6 +63,12 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     textAlign: 'center',
   },
+  carouselContainer: {
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 50,
+  },
 })
 
 export default styles

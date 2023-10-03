@@ -2,6 +2,7 @@ import { View, Text, SafeAreaView, FlatList, Pressable } from 'react-native'
 
 import styles from '../styles/home'
 import { useEffect, useState } from 'react'
+import CarouselCards from './Carousel/CarouselCards'
 
 const DATA = [
   {
@@ -78,7 +79,10 @@ const Home = ({ navigation, route }) => {
           style={styles.huntList}
           data={DATA}
           renderItem={({ item }) => (
-            <Text style={styles.huntItem}>{item.title}</Text>
+            // <Text style={styles.huntItem}>{item.title}</Text>
+            <SafeAreaView style={styles.carouselContainer}>
+              <CarouselCards />
+            </SafeAreaView>
           )}
           keyExtractor={item => item.id}
         />
