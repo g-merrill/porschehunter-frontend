@@ -4,7 +4,8 @@ import CarouselCards from './Carousel/CarouselCards'
 
 import styles from '../styles/viewHunt'
 
-const ViewHunt = () => {
+const ViewHunt = ({ navigation, route }) => {
+  const user = route.params ? route.params.user : null
   const [huntTitle, setHuntTitle] = useState('Test Hunt Title')
   const [huntLocation, setHuntLocation] = useState('Test Hunt Location')
 

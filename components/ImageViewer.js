@@ -2,12 +2,17 @@ import { Image } from 'react-native'
 
 import styles from '../styles/imageViewer'
 
-const ImageViewer = ({ placeholderImageSource, selectedImage }) => {
-    const imageSource = selectedImage
-      ? { uri: selectedImage }
-      : placeholderImageSource
+const ImageViewer = ({ placeholderImageSource, selectedImage, route }) => {
+  const imageSource = selectedImage
+    ? { uri: selectedImage }
+    : placeholderImageSource
 
-  return <Image source={imageSource} style={styles.image} />
+  return (
+    <Image
+      source={imageSource}
+      style={route.name === 'NewHunt' ? styles.image : styles.photoDeetsImage}
+    />
+  )
 }
 
 export default ImageViewer

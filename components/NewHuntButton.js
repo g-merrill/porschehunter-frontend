@@ -1,29 +1,29 @@
 import { View, Pressable, Text } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-import styles from '../styles/button'
+import styles from '../styles/newHuntButton'
 import { COLORS } from '../constants'
 
-const Button = ({ label, theme, onPress }) => {
+const NewHuntButton = ({ label, theme, onPress }) => {
   if (theme === 'primary') {
     return (
       <View
         style={[
           styles.buttonContainer,
-          { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 },
+          { borderWidth: 2, borderColor: COLORS.white, borderRadius: 5 },
         ]}
       >
         <Pressable
-          style={[styles.button, { backgroundColor: '#fff' }]}
+          style={[styles.button, { backgroundColor: COLORS.dark }]}
           onPress={onPress}
         >
           <FontAwesome
             name='picture-o'
             size={18}
-            color={COLORS.primary}
+            color={COLORS.white}
             style={styles.buttonIcon}
           />
-          <Text style={[styles.buttonLabel, { color: COLORS.primary }]}>
+          <Text style={[styles.buttonLabel, { color: COLORS.white }]}>
             {label}
           </Text>
         </Pressable>
@@ -35,12 +35,23 @@ const Button = ({ label, theme, onPress }) => {
     <View style={styles.buttonContainer}>
       <Pressable
         style={styles.button}
-        onPress={() => alert('You pressed a button.')}
+        onPress={onPress}
       >
-        <Text style={styles.buttonLabel}>{label}</Text>
+        <Text
+          style={[
+            styles.buttonLabel,
+            {
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              letterSpacing: 1,
+            },
+          ]}
+        >
+          {label}
+        </Text>
       </Pressable>
     </View>
   )
 }
 
-export default Button
+export default NewHuntButton

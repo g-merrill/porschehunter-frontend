@@ -1,14 +1,15 @@
+import { useEffect, useState } from 'react'
 import { View, SafeAreaView } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 
 import ImageViewer from './ImageViewer'
-import Button from './Button'
+import NewHuntButton from './NewHuntButton'
 import styles from '../styles/newHunt'
-import { useEffect, useState } from 'react'
 
-const placeholderImage = require('../assets/images/background-image.png')
+const placeholderImage = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash-compressed.jpg')
 
-const NewHunt = () => {
+const NewHunt = ({ navigation, route }) => {
+  const user = route.params ? route.params.user : null
   const [selectedImage, setSelectedImage] = useState(null)
 
   const pickImageAsync = async () => {
@@ -25,21 +26,30 @@ const NewHunt = () => {
     }
   }
 
+  const handleSelectPhoto = () => {
+    if (!selectedImage) {
+      alert('You did not select an image')
+    } else {
+      navigation.navigate('AddPhotoDetails', { uri: selectedImage })
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer
           placeholderImageSource={placeholderImage}
           selectedImage={selectedImage}
+          route={route}
         />
       </View>
       <View style={styles.footerContainer}>
-        <Button
+        <NewHuntButton
           theme='primary'
           label='Choose a photo'
           onPress={pickImageAsync}
         />
-        <Button label='Use this photo' />
+        <NewHuntButton label='Use photo >>' onPress={handleSelectPhoto} />
       </View>
     </SafeAreaView>
   )

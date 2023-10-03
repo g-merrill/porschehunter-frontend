@@ -11,7 +11,7 @@ const HeaderLeft = ({ navigation }) => {
       onPress={goBackIfPossible(navigation)}
       style={styles.headerButton}
     >
-      <Text style={styles.headerText}>{'<'}</Text>
+      <Text style={styles.headerText}>{'< Go Back'}</Text>
     </Pressable>
   )
 }

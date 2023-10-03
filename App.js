@@ -8,19 +8,20 @@ import { useCallback } from 'react'
 import { Amplify } from 'aws-amplify'
 
 import { navigationRef } from './RootNavigation'
+import { COLORS } from './constants'
 import Login from './components/Login'
 import SignupEmail from './components/Signup/SignupEmail'
 import SignupPassword from './components/Signup/SignupPassword'
 import SignupUsername from './components/Signup/SignupUsername'
 import Home from './components/Home'
 import NewHunt from './components/NewHunt'
+import AddPhotoDetails from './components/AddPhotoDetails'
 import ViewHunt from './components/ViewHunt'
 import Account from './components/Account'
 // import Account from './components/AmplifyDemo'
 import HeaderLeft from './components/Header/HeaderLeft'
 import HeaderRight from './components/Header/HeaderRight'
 
-import { COLORS } from './constants'
 
 // import awsExports from './src/aws-exports'
 // Amplify.configure(awsExports)
@@ -60,6 +61,7 @@ const MyStack = () => {
         <Stack.Screen name='SignupPassword' component={SignupPassword} />
         <Stack.Screen name='SignupUsername' component={SignupUsername} />
         <Stack.Screen name='NewHunt' component={NewHunt} />
+        <Stack.Screen name='AddPhotoDetails' component={AddPhotoDetails} />
         <Stack.Screen name='ViewHunt' component={ViewHunt} />
         <Stack.Screen name='Account' component={Account} />
       </Stack.Group>

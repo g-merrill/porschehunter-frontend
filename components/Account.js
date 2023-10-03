@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 import { COLORS } from '../constants'
 
 const Account = ({ navigation, route }) => {
-  const user_id = route.params ? route.params.user.id : null
+  const user = route.params ? route.params.user : null
+  const user_id = user ? user.id : null
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [editingUsername, setEditingUsername] = useState(false)
