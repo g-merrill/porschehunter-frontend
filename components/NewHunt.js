@@ -9,7 +9,7 @@ import styles from '../styles/newHunt'
 const placeholderImage = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash-compressed.jpg')
 
 const NewHunt = ({ navigation, route }) => {
-  const { user } = route.params
+  const { user, hunt } = route.params
   const [selectedImage, setSelectedImage] = useState(null)
 
   const pickImageAsync = async () => {
@@ -29,13 +29,14 @@ const NewHunt = ({ navigation, route }) => {
     if (!selectedImage) {
       alert('Please select an image from your camera roll')
     } else {
-      navigation.navigate('AddPhotoDetails', { uri: selectedImage, user })
+      navigation.navigate('AddPhotoDetails', { uri: selectedImage, user, hunt })
     }
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
+      {/* TODO: crop/fit the image better if possible */}
         <ImageViewer
           placeholderImageSource={placeholderImage}
           selectedImage={selectedImage}

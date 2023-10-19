@@ -36,6 +36,9 @@ const SignupEmail = ({ navigation }) => {
         style={styles.textInput}
         onChangeText={newEmail => setEmail(newEmail)}
         defaultValue={email}
+        autoCapitalize='none'
+        autoCorrect={false}
+        autoCompleteType='email'
       />
       <Pressable style={styles.continueButton} onPress={handleSubmit}>
         <Text style={styles.continueButtonText}>Next</Text>

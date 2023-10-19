@@ -94,6 +94,8 @@ const Account = ({ navigation, route }) => {
               placeholderTextColor={COLORS.gold}
               onChangeText={newUsername => setUsername(newUsername)}
               defaultValue={username}
+              autoCapitalize='none'
+              autoCorrect={false}
             />
           )}
           <Pressable

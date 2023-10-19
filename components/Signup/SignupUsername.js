@@ -58,6 +58,8 @@ const SignupUsername = ({ navigation, route }) => {
         style={styles.textInput}
         onChangeText={newUsername => setUsername(newUsername)}
         defaultValue={username}
+        autoCapitalize='none'
+        autoCorrect={false}
       />
       <Pressable style={styles.continueButton} onPress={handleSubmit}>
         <Text style={styles.continueButtonText}>Done!</Text>

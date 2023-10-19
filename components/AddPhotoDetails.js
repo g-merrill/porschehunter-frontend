@@ -1,24 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Text, View, SafeAreaView, TextInput, Pressable, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
-import * as ImagePicker from 'expo-image-picker'
+import { Text, View, TextInput, Pressable, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 
 import ImageViewer from './ImageViewer'
-import NewHuntButton from './NewHuntButton'
 import { COLORS } from '../constants'
 import styles from '../styles/newHunt'
 import carTypes from '../carTypes'
 import fetchApi from '../services/fetchApi'
 
-const placeholderImage = require('../assets/images/josh-berquist-PljkQ_KSbMc-unsplash-compressed.jpg')
-
 const AddPhotoDetails = ({ navigation, route }) => {
   const { user, uri, hunt } = route.params
   const [huntTitle, setHuntTitle] = useState('')
-  const [huntTitleBtnText, setHuntTitleBtnText] = useState('Done')
   const [huntLoc, setHuntLoc] = useState('')
-  const [huntLocBtnText, setHuntLocBtnText] = useState('Done')
-  const [carModel, setCarModel] = useState('718')
+  const [carModel, setCarModel] = useState('Unknown')
   const [carType, setCarType] = useState('')
 
   useEffect(() => {
@@ -29,23 +23,20 @@ const AddPhotoDetails = ({ navigation, route }) => {
     }
   }, [])
 
-  const toggleHuntTitleBtn = () => {
-    setHuntTitleBtnText(huntTitleBtnText === 'Done' ? 'Edit' : 'Done')
-  }
+  useEffect(() => {
+    setCarType(carTypes[carModel].sort()[0])
+  }, [carModel])
 
-  const toggleHuntLocBtn = () => {
-    setHuntLocBtnText(huntLocBtnText === 'Done' ? 'Edit' : 'Done')
-  }
-
-  const handleAddMorePhotos = () => {
+  const handleAddMorePhotos = async () => {
     // alert if fields are incomplete
     // save new hunt or patch existing hunt
     // save photo with hunt data
+    await handleSaveHunt(true)
     // navigate to NewHunt again with new hunt and photo in route params
-    alert('clicked AddMorePhotos')
+    
   }
 
-  const handleSaveHunt = async () => {
+  const handleSaveHunt = async (morePhotos = false) => {
     // alert if fields are incomplete
     if (!huntTitle) {
       alert('Please enter a Hunt title.')
@@ -57,7 +48,7 @@ const AddPhotoDetails = ({ navigation, route }) => {
       const body = { title: huntTitle, location: huntLoc }
       huntFetch = await fetchApi(
         `/hunts/${hunt.id}?user_id=${user.id}`,
-        'POST',
+        'PATCH',
         {
           body,
         },
@@ -68,7 +59,7 @@ const AddPhotoDetails = ({ navigation, route }) => {
     }
     // then save photo with hunt data
     const photoBody =
-      carModel === 'Unknown' ? { uri } : { uri, carModel, carType }
+      carModel === 'Unknown' ? { uri } : { uri, car_model: carModel, car_type: carType }
 
     const postPhotoFetch = await fetchApi(
       `/hunts/${huntFetch.id}/photos?user_id=${user.id}`,
@@ -77,9 +68,12 @@ const AddPhotoDetails = ({ navigation, route }) => {
         body: photoBody,
       },
     )
-    alert('clicked SaveHunt')
-    // TODO: then navigate to ViewHunt with hunt in route params
-    navigation.navigate('ViewHunt', { hunt_id: huntFetch.id })
+    console.log(morePhotos)
+    if (morePhotos) {
+      navigation.navigate('NewHunt', { hunt: huntFetch, user })
+    } else {
+      navigation.navigate('ViewHunt', { hunt_id: huntFetch.id, user })
+    }
   }
 
   return (
@@ -98,41 +92,22 @@ const AddPhotoDetails = ({ navigation, route }) => {
           <View style={styles.inputRow}>
             <TextInput
               placeholder='Hunt Title'
-              placeholderTextColor={COLORS.white}
+              placeholderTextColor='#AFB5BC'
               style={styles.textInput}
               onChangeText={val => setHuntTitle(val)}
               defaultValue={huntTitle}
-              editable={huntTitleBtnText === 'Done'}
+              returnKeyType={'done'}
             />
-            <Pressable
-              style={
-                huntTitleBtnText === 'Done'
-                  ? styles.inputPressableSave
-                  : styles.inputPressableEdit
-              }
-              onPress={toggleHuntTitleBtn}
-            >
-              <Text style={styles.inputPressableText}>{huntTitleBtnText}</Text>
-            </Pressable>
           </View>
           <View style={styles.inputRow}>
             <TextInput
               placeholder='Hunt Location'
-              placeholderTextColor={COLORS.white}
+              placeholderTextColor='#AFB5BC'
               style={styles.textInput}
               onChangeText={val => setHuntLoc(val)}
               defaultValue={huntLoc}
+              returnKeyType={'done'}
             />
-            <Pressable
-              style={
-                huntLocBtnText === 'Done'
-                  ? styles.inputPressableSave
-                  : styles.inputPressableEdit
-              }
-              onPress={toggleHuntLocBtn}
-            >
-              <Text style={styles.inputPressableText}>{huntLocBtnText}</Text>
-            </Pressable>
           </View>
           <View style={styles.inputRow}>
             <Text style={{ color: COLORS.white }}>Car Model: </Text>
@@ -191,7 +166,7 @@ const AddPhotoDetails = ({ navigation, route }) => {
             >
               <Text style={styles.addMoreText}>+ Add more photos</Text>
             </Pressable>
-            <Pressable style={styles.saveHuntButton} onPress={handleSaveHunt}>
+            <Pressable style={styles.saveHuntButton} onPress={() => handleSaveHunt()}>
               <Text style={styles.saveHuntText}>Save hunt</Text>
             </Pressable>
           </View>

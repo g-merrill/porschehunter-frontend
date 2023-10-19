@@ -12,6 +12,7 @@ const ViewHunt = ({ navigation, route }) => {
   const [photoData, setPhotoData] = useState([])
 
   useEffect(() => {
+    console.log(`hunt_id: ${hunt_id}`)
     if (hunt_id) {
       const getHuntData = async hunt_id => {
         const getHuntFetch = await fetchApi(`/hunts/${hunt_id}`, 'GET')
